@@ -3,12 +3,11 @@ var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
 
 gulp.task('webserver', function() {
-  gulp.src('app')
+  gulp.src('.')
     .pipe(webserver({
       livereload: true,
       directoryListing: false,
-      open: true,
-      fallback: 'index.html'
+      open: 'app'
     }));
 });
 

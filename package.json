@@ -1,0 +1,29 @@
+{
+  "name": "inititative-controller",
+  "version": "1.0.0",
+  "description": "A static page app to manage Table RPG Initiatives",
+  "main": "app/index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-webserver": "^0.9.1",
+    "jasmine": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marciobda/inititative-controller.git"
+  },
+  "author": "marciobda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marciobda/inititative-controller/issues"
+  },
+  "homepage": "https://github.com/marciobda/inititative-controller#readme"
+}
