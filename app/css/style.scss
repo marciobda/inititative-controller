@@ -1,0 +1,16 @@
+@import '../../bower_components/foundation-apps/scss/foundation.scss';
+
+html {}
+
+.actor {
+    width: 20em;
+
+    .actor__name {
+        margin-top: .8em;
+    }
+
+    .actor__init {
+        margin-bottom: 0;
+    }
+
+}

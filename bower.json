@@ -1,0 +1,27 @@
+{
+  "name": "inititative-controller",
+  "version": "1.0.0",
+  "homepage": "https://github.com/marciobda/inititative-controller",
+  "authors": [
+    "marciobda <marciobda@gmail.com>"
+  ],
+  "description": "A static page app to manage Table RPG Initiatives",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "foundation-apps": "~1.1.0"
+  },
+  "resolutions": {
+    "angular": "~1.4.7"
+  }
+}
