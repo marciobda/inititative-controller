@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app>
+<html lang="en" data-ng-app="Initiative">
 <head>
     <meta charset="UTF-8">
     <title>Initiative Controller</title>
@@ -12,39 +12,24 @@
     <h1>Initiative Controller</h1>
     <h2>A static page app to manage Table RPG Initiatives</h2>
 
-    <div class="grid-frame">
+    <div class="grid-frame"  data-ng-controller="InitiativeCtrl">
         <div class="grid-block vertical shrink">
 
-            <div class="card primary actor">
-                <div class="card-section clearfix">
-                    <span class="actor__name inline-label small-3 medium-3 large-3 float-left" contenteditable>Player</span>
-                    <input class="actor__init small-2 medium-2 large-2 float-right" type="number">
-                </div>
-            </div>
+            <ul ng-repeat="actor in actors track by $index">
+                <li>
+                    {{ actor }}
+                </li>
+            </ul>
 
-            <div class="card primary actor">
-                <div class="card-section clearfix">
-                    <span class="actor__name inline-label small-3 medium-3 large-3 float-left" contenteditable>Player</span>
-                    <input class="actor__init small-2 medium-2 large-2 float-right" type="number">
-                </div>
-            </div>
+            <!-- <player></player>
+            <player></player>
+            <player></player>
+            <monster></monster> -->
 
-            <div class="card primary actor">
-                <div class="card-section clearfix">
-                    <span class="actor__name inline-label small-3 medium-3 large-3 float-left" contenteditable>Player</span>
-                    <input class="actor__init small-2 medium-2 large-2 float-right" type="number">
-                </div>
-            </div>
-
-            <div class="card alert actor">
-                <div class="card-section clearfix">
-                    <span class="actor__name inline-label small-3 medium-3 large-3 float-left" contenteditable>Monster</span>
-                    <input class="actor__init small-2 medium-2 large-2 float-right" type="number">
-                </div>
-            </div>
 
         </div>
-        <div class="grid-block" data-ng-controller="InitiativeCtrl">
+        <div class="grid-block">
+
         </div>
     </div>
 
