@@ -1,7 +1,15 @@
 "use strict";
-var Initiative = angular.module('app',[]);
+var initiativeApp = angular.module('Initiative',[]);
 
+initiativeApp.controller('InitiativeCtrl',function($scope){
 
-Initiative.controller('InitiativeCtrl',function(){
+    $scope.actors = ['player','player','player','monster'];
 
+})
+
+.directive('actor',function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/actor.html'
+    }
 });

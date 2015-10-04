@@ -10,7 +10,7 @@
     "gulp": "^3.9.0",
     "gulp-sass": "^2.0.4",
     "gulp-webserver": "^0.9.1",
-    "jasmine": "^2.3.2"
+    "jasmine-core": "^2.3.4"
   },
   "devDependencies": {},
   "scripts": {

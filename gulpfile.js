@@ -21,6 +21,11 @@ gulp.task('sass:watch', function () {
   gulp.watch('./app/css/**/*.scss',['sass']);
 });
 
-
-
-gulp.task('default', ['webserver','sass:watch']);
+gulp.task('test', function() {
+  gulp.src('.')
+    .pipe(webserver({
+      livereload: false,
+      directoryListing: false,
+      open: 'SpecRunner.html'
+    }));
+});
