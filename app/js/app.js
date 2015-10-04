@@ -1,15 +1,17 @@
 "use strict";
-var initiativeApp = angular.module('Initiative',[]);
+var app = angular.module('Initiative',[]);
 
-initiativeApp.controller('InitiativeCtrl',function($scope){
+app.controller('InitiativeCtrl',function($scope){
 
+    // Initial base group
     $scope.actors = ['player','player','player','monster'];
+
 
 })
 
 .directive('actor',function(){
     return {
-        restrict: 'E',
-        templateUrl: 'partials/actor.html'
+        templateUrl: 'partials/actor.html',
+        scope: { type: '@' }
     }
 });

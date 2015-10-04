@@ -2,6 +2,15 @@ var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
 
+gulp.task('test', function() {
+  gulp.src('.')
+    .pipe(webserver({
+      livereload: false,
+      directoryListing: false,
+      open: 'SpecRunner.html'
+    }));
+});
+
 gulp.task('webserver', function() {
   gulp.src('.')
     .pipe(webserver({
@@ -21,11 +30,4 @@ gulp.task('sass:watch', function () {
   gulp.watch('./app/css/**/*.scss',['sass']);
 });
 
-gulp.task('test', function() {
-  gulp.src('.')
-    .pipe(webserver({
-      livereload: false,
-      directoryListing: false,
-      open: 'SpecRunner.html'
-    }));
-});
+gulp.task('default', ['webserver','sass:watch']);

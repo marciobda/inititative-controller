@@ -1,6 +1,5 @@
 describe('InitiativeCtrl', function() {
 
-    //beforeEach(module('Initiative'));
     beforeEach(angular.mock.module('Initiative'));
 
     it("should generate 4 actors", inject(function($controller) {
@@ -11,5 +10,11 @@ describe('InitiativeCtrl', function() {
       expect(scope.actors.length).toBe(4);
 
     }));
+
+    //TODO: Test new Actor Added
+    //TODO: Test Actor removed
+    //TODO: Test drag and drop event
+    //TODO: Test auto calculation on move
+    //TODO: Test auto move on calculation
 
 });
