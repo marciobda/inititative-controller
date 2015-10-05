@@ -10,6 +10,7 @@ app.controller('InitiativeCtrl',function($scope){
         console.log('it worked! Initial: ' + initial + ' and Target: ' + target);
 
         $scope.actors = ['player','monster','player','player'];
+        //TODO: Reorder based on index
         $scope.$apply();
     }
 
@@ -21,7 +22,6 @@ app.controller('InitiativeCtrl',function($scope){
         templateUrl: 'partials/actor.html',
         scope: { type: '@'},
         link: function(scope,element,attr) {
-
 
             element.on('dragstart', function(e){
 
@@ -37,15 +37,6 @@ app.controller('InitiativeCtrl',function($scope){
             element.on('dragend',function(e){
                 angular.element(element[0].parentNode).removeClass("dragging");
             });
-
-            element.on('dragenter',function(e){
-
-            });
-
-            element.on('dragleave',function(e){
-
-            });
-
 
         }
     }
@@ -67,13 +58,11 @@ app.controller('InitiativeCtrl',function($scope){
             });
 
             element.on('dragover',function(e){
-                //get index of target
                 e.stopPropagation();
                 e.preventDefault();
             });
 
             element.on('drop', function(e){
-
                 scope.initial = e.dataTransfer.getData('Text');
                 scope.target = e.target.attributes.getNamedItem('data-index').value;
 
