@@ -14,3 +14,15 @@ html {}
     }
 
 }
+
+.target {
+    border: 5px solid green;
+}
+
+// .dragging {
+//     border: 5px solid gray;
+// }
+
+.dragging actor * {
+     pointer-events: none;
+ }

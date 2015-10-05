@@ -11,9 +11,10 @@ describe('InitiativeCtrl', function() {
 
     }));
 
+    //TODO: Test drag and drop event
+    //TODO: Test Controller Reorder
     //TODO: Test new Actor Added
     //TODO: Test Actor removed
-    //TODO: Test drag and drop event
     //TODO: Test auto calculation on move
     //TODO: Test auto move on calculation
 

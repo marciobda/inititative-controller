@@ -5429,3 +5429,9 @@ blockquote p {
     margin-top: .8em; }
   .actor .actor__init {
     margin-bottom: 0; }
+
+.target {
+  border: 5px solid green; }
+
+.dragging actor * {
+  pointer-events: none; }

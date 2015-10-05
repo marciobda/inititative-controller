@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Initiative Controller</title>
     <link rel="stylesheet" href="css/style.css">
+
     <script src="../bower_components/angular/angular.js"></script>
     <script src="js/app.js"></script>
 </head>
@@ -13,13 +14,9 @@
     <h2>A static page app to manage Table RPG Initiatives</h2>
 
     <div class="grid-frame"  data-ng-controller="InitiativeCtrl">
-        <div class="grid-block vertical shrink">
+        <div class="grid-block vertical shrink actor-list" list-order style="background:yellow;" dropped="reorder(initial,target)">
 
-            <ul ng-repeat="actor in actors track by $index">
-                <li>
-                    <actor type="{{actor}}"></actor>
-                </li>
-            </ul>
+            <actor type="{{actor}}" data-ng-repeat="actor in actors track by $index" draggable='true' data-index="{{ $index }}" ></actor>
 
         </div>
         <div class="grid-block">
