@@ -5423,6 +5423,9 @@ blockquote p {
 .float-none {
   float: none; }
 
+html {
+  box-sizing: border-box; }
+
 .actor {
   width: 20em; }
   .actor .actor__name {
@@ -5430,8 +5433,8 @@ blockquote p {
   .actor .actor__init {
     margin-bottom: 0; }
 
-.target {
-  border: 5px solid green; }
+.actor--dragging {
+  border: 5px solid grey; }
 
 .dragging actor * {
   pointer-events: none; }

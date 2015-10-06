@@ -16,7 +16,7 @@
     <div class="grid-frame"  data-ng-controller="InitiativeCtrl">
         <div class="grid-block vertical shrink actor-list" list-order dropped="reorder(initial,target)">
 
-            <actor type="{{actor}}" data-ng-repeat="actor in actors track by $index" draggable='true' data-index="{{ $index }}" ></actor>
+            <actor type="actor.type" name="actor.name"  data-ng-repeat="actor in actors track by $index" draggable='true' data-index="{{ $index }}" ></actor>
 
         </div>
         <div class="grid-block">
