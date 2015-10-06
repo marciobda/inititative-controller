@@ -20,10 +20,10 @@ describe('InitiativeCtrl', function() {
 
       expect(scope.actors)
         .toEqual([
-            { type :'player', name : 'Name'},
-            { type :'monster', name : 'Monster'},
-            { type :'player', name : 'Name'},
-            { type :'player', name : 'Name'}
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'monster', name : 'Monster',  initValue : 10 },
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'player',  name : 'Name', initValue : 10 }
         ]);
 
     }));
@@ -38,12 +38,12 @@ describe('InitiativeCtrl', function() {
 
       expect(scope.actors)
         .toEqual([
-            { type :'player', name : 'Name'},
-            { type :'player', name : 'Name'},
-            { type :'player', name : 'Name'},
-            { type :'monster', name : 'Monster'},
-            { type :'player', name : 'Name'},
-            { type :'monster', name : 'Monster'}
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'monster', name : 'Monster',  initValue : 10 },
+            { type : 'player',  name : 'Name', initValue : 10 },
+            { type : 'monster', name : 'Monster',  initValue : 10 }
         ]);
 
 

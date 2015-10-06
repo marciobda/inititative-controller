@@ -5,10 +5,10 @@ app.controller('InitiativeCtrl',function($scope){
 
     // Initial base group
     $scope.actors = [
-        { type : 'player',  name : 'Name' },
-        { type : 'player',  name : 'Name' },
-        { type : 'player',  name : 'Name' },
-        { type : 'monster', name : 'Monster' }
+        { type : 'player',  name : 'Name', initValue : 10 },
+        { type : 'player',  name : 'Name', initValue : 10 },
+        { type : 'player',  name : 'Name', initValue : 10 },
+        { type : 'monster', name : 'Monster',  initValue : 10 }
     ];
 
     $scope.reorder = function (initial, target) {
@@ -23,9 +23,9 @@ app.controller('InitiativeCtrl',function($scope){
 
     $scope.addActor = function(type) {
         if(type === 'player') {
-            $scope.actors.push({ type : 'player',  name : 'Name' });
+            $scope.actors.push({ type : 'player',  name : 'Name', initValue : 10  });
         } else if(type === 'monster') {
-            $scope.actors.push({ type : 'monster',  name : 'Monster' });
+            $scope.actors.push({ type : 'monster',  name : 'Monster', initValue : 10  });
         }
     };
 
@@ -36,16 +36,22 @@ app.controller('InitiativeCtrl',function($scope){
         templateUrl: 'partials/actor.html',
         scope: {
             type: '=type',
-            name: '=name'
+            name: '=name',
+            initValue: '=ngModel'
         },
         link: function(scope,element,attr) {
-
+            console.log(scope);
             element.on('input', function(e){
                 scope.name = element[0]
                     .children[0]
                     .children[0]
                     .children[0]
                     .textContent;
+                scope.initValue = element[0]
+                    .children[0]
+                    .children[0]
+                    .children[0]
+                    .value;
                 scope.$apply();
             });
 
