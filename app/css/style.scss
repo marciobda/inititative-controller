@@ -6,6 +6,7 @@ html {
 
 .actor {
     width: 20em;
+    margin: 0 auto;
 
     .actor__name {
         margin-top: .8em;
@@ -17,8 +18,12 @@ html {
 
 }
 
+.actor-menu {
+    margin: 0 auto;
+}
+
 .actor--dragging {
-    border: 5px solid grey;
+    // border: 5px solid grey;
 }
 
 .dragging actor * {

@@ -8,20 +8,24 @@
     <script src="../bower_components/angular/angular.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body>
+<body data-ng-controller="InitiativeCtrl" >
 
     <h1>Initiative Controller</h1>
-    <h2>A static page app to manage Table RPG Initiatives</h2>
+    <h3>A static page app to manage Table RPG Initiatives</h3>
 
-    <div class="grid-frame"  data-ng-controller="InitiativeCtrl">
-        <div class="grid-block vertical shrink actor-list" list-order dropped="reorder(initial,target)">
+    <div class="grid-frame vertical">
+
+        <ul class="menu-bar condense actor-menu">
+            <li><a class="button" data-ng-click="addActor('player')" href="#">Add new player</a></li>
+            <li><a class="alert button" data-ng-click="addActor('monster')" href="#">Add new monster</a></li>
+        </ul>
+
+        <div class="grid-block vertical actor-list" list-order dropped="reorder(initial,target)">
 
             <actor type="actor.type" name="actor.name"  data-ng-repeat="actor in actors track by $index" draggable='true' data-index="{{ $index }}" ></actor>
 
         </div>
-        <div class="grid-block">
 
-        </div>
     </div>
 
 

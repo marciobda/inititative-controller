@@ -5,10 +5,10 @@ app.controller('InitiativeCtrl',function($scope){
 
     // Initial base group
     $scope.actors = [
-        { type :'player', name : 'Name'},
-        { type :'player', name : 'Name'},
-        { type :'player', name : 'Name'},
-        { type :'monster', name : 'Monster'}
+        { type : 'player',  name : 'Name' },
+        { type : 'player',  name : 'Name' },
+        { type : 'player',  name : 'Name' },
+        { type : 'monster', name : 'Monster' }
     ];
 
     $scope.reorder = function (initial, target) {
@@ -19,7 +19,15 @@ app.controller('InitiativeCtrl',function($scope){
 
         $scope.$apply();
 
-    }
+    };
+
+    $scope.addActor = function(type) {
+        if(type === 'player') {
+            $scope.actors.push({ type : 'player',  name : 'Name' });
+        } else if(type === 'monster') {
+            $scope.actors.push({ type : 'monster',  name : 'Monster' });
+        }
+    };
 
 })
 

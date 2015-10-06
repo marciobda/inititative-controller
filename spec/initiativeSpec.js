@@ -11,7 +11,6 @@ describe('InitiativeCtrl', function() {
 
     }));
 
-
     it("should reorder the array, moving the last actor to the second position", inject(function($controller, $rootScope) {
 
       var scope = $rootScope.$new();
@@ -29,10 +28,29 @@ describe('InitiativeCtrl', function() {
 
     }));
 
+    it("should add a new actor based on the role", inject(function($controller, $rootScope) {
 
-    //TODO: Test drag and drop event ???
-    //TODO: Test new Actor Added
+      var scope = $rootScope.$new();
+      var ctrl = $controller('InitiativeCtrl',{$scope:scope});
+
+      scope.addActor('player');
+      scope.addActor('monster');
+
+      expect(scope.actors)
+        .toEqual([
+            { type :'player', name : 'Name'},
+            { type :'player', name : 'Name'},
+            { type :'player', name : 'Name'},
+            { type :'monster', name : 'Monster'},
+            { type :'player', name : 'Name'},
+            { type :'monster', name : 'Monster'}
+        ]);
+
+
+    }));
+
     //TODO: Test Actor removed
     //TODO: Test auto move on calculation
-
+    //TODO: Test drag and drop event ???
+    //
 });

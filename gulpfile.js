@@ -2,21 +2,13 @@ var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
 
-gulp.task('test', function() {
-  gulp.src('.')
-    .pipe(webserver({
-      livereload: false,
-      directoryListing: false,
-      open: 'SpecRunner.html'
-    }));
-});
-
 gulp.task('webserver', function() {
   gulp.src('.')
     .pipe(webserver({
       livereload: true,
       directoryListing: false,
-      open: 'app'
+      open: 'app',
+      host: '0.0.0.0'
     }));
 });
 
