@@ -12,7 +12,12 @@
     "gulp-webserver": "^0.9.1",
     "jasmine-core": "^2.3.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
+    "gulp-html-replace": "^1.5.4",
+    "gulp-sequence": "^0.4.1"
+  },
   "scripts": {
     "test": "jasmine"
   },

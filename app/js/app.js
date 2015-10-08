@@ -1,4 +1,5 @@
 "use strict";
+var iosDragDropShim = { enableEnterLeave: true };
 var app = angular.module('Initiative',[]);
 
 app.controller('InitiativeCtrl',function($scope){
@@ -40,7 +41,6 @@ app.controller('InitiativeCtrl',function($scope){
             initValue: '=ngModel'
         },
         link: function(scope,element,attr) {
-            console.log(scope);
             element.on('input', function(e){
                 scope.name = element[0]
                     .children[0]
@@ -63,7 +63,7 @@ app.controller('InitiativeCtrl',function($scope){
 
                 angular.element(element[0].parentNode).addClass('dragging');
 
-                e.stopPropagation();
+                //e.stopPropagation();
             });
 
             element.on('dragover',function(e){
