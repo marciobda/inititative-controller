@@ -27,9 +27,9 @@ gulp.task('sass:watch', function () {
 });
 
 gulp.task('html-replace', function () {
-    gulp.src('dist/index.html')
+    gulp.src('./app/index.html')
         .pipe(htmlreplace({
-            'css':'style.css',
+            'css':'css/style.css',
             'js':'js/bundle.js'
         }))
         .pipe(gulp.dest('dist/'));
