@@ -7,8 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "http-server": "^0.8.5"
-
+    "harp": "^0.19.0"
   },
   "devDependencies": {
     "gulp-concat": "^2.6.0",

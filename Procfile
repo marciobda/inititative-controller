@@ -1,1 +1,1 @@
-web: html-server dist/
+web: harp server --port $PORT dist
