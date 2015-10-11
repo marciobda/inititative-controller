@@ -5436,6 +5436,3 @@ html {
 
 .actor-menu {
   margin: 0 auto; }
-
-.dragging actor * {
-  pointer-events: none; }
