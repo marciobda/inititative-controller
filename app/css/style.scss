@@ -1,35 +1,80 @@
+// Application Colors
+ $primary-color: #3F51B5 !default;
+// $secondary-color: #f1f1f1;
+ $alert-color: #FF5252 !default;
+// $info-color: #A0D3E8;
+// $success-color: #43AC6A;
+// $warning-color: #F08A24;
+ $dark-color: #212121;
+// $gray: #dfdfdf;
+// $gray-dark: darken($gray, 8);
+// $gray-light: lighten($gray, 8);
+
 @import '../../bower_components/foundation-apps/scss/foundation.scss';
 
 html {
     box-sizing: border-box;
 }
 
+.title {
+    padding: 1em 2em;
+}
+
 .actor-list {
-    width: 20em;
+    overflow-y: visible;
+    overflow: visible;
+    padding: 0 3em;
+    max-width: 56.25rem;
     margin: 0 auto;
 }
 
 .actor {
-    width: 20em;
-    margin: 0 auto;
-
-    .actor__name {
-        margin-bottom: 0;
-        margin-left: 1em;
-    }
-
-    .actor__init {
-        margin-bottom: 0;
-    }
-
-    .actor__handler {
-        width: 3em;
-        height: 3em;
-        background: rgba(0, 0, 0, .3);;
-    }
+    //width: 20em;
 
 }
 
+    .actor__name[type="text"],
+    .actor__name[type="text"]:focus,
+    .actor__name[type="text"]:hover  {
+        margin-bottom: 0;
+        margin-left: 1em;
+        color: #fff;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        width: 90%
+    }
+
+    .actor__name[type="text"]::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, .5);;
+    }
+
+    .actor__init[type="number"] {
+        margin-bottom: 0;
+        border-radius: 50%;
+        width: 3em;
+        height: 3em;
+        line-height: 0;
+        display: block;
+        text-align: center;
+        position: absolute;
+        margin-top: -.7em;
+        margin-left: -2.25em;
+        font-size: 1.5rem;
+
+        @include breakpoint(medium) {
+            padding-left: .9em;
+         }
+
+    }
+
 .actor-menu {
     margin: 0 auto;
+    width: 20em;
+
+    .button{
+        color: #fff;
+        font-weight: bold;
+        border-radius: 4px;
+    }
 }

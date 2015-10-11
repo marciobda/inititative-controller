@@ -23,10 +23,11 @@ app.controller('InitiativeCtrl',function($scope){
 
     $scope.addActor = function(type) {
         if(type === 'player') {
-            $scope.actors.push({ type : 'player',  name : 'Name', initValue : 10  });
+            $scope.actors.push({ type : 'player',  name : '', initValue : 10  });
         } else if(type === 'monster') {
-            $scope.actors.push({ type : 'monster',  name : 'Monster', initValue : 10  });
+            $scope.actors.push({ type : 'monster',  name : '', initValue : 10  });
         }
+        console.log($scope.actors);
     };
 
 })
@@ -41,28 +42,26 @@ app.controller('InitiativeCtrl',function($scope){
             droppedEvent: '&dropped'
         },
         link: function(scope,element,attr) {
-
-            var handlers = document.querySelectorAll('.actor__handler');
-            var longpress = true;
-
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').value;
                 scope.initValue = this.querySelector('.actor__init').value;
                 scope.$apply();
             });
 
-            element.on('mousedown touchstart',function(e){
+            element.on('mousedown',function(e){
                 element[0].draggable = true;
             });
 
             element.on('mouseup',function(e){
                 element[0].draggable = false;
                 e.target.focus();
+            });
 
+            element.on('touchstart',function(e){
+                element[0].draggable = true;
             });
 
             element.on('touchend',function(e){
-                longpress = false;
                 e.target.focus();
                 element[0].draggable = false;
             });
