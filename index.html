@@ -24,7 +24,7 @@
 
     <div class="grid-block vertical actor-list" list-order>
 
-        <actor type="actor.type" name="actor.name" initValue="actor.initValue" data-ng-repeat="actor in actors track by $index" draggable='true' data-index="{{ $index }}" dropped="reorder(initial,target)"></actor>
+        <actor type="actor.type" name="actor.name" initValue="actor.initValue" data-ng-repeat="actor in actors track by $index" data-index="{{ $index }}" dropped="reorder(initial,target)"></actor>
 
     </div>
 
