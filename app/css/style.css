@@ -5426,11 +5426,16 @@ blockquote p {
 html {
   box-sizing: border-box; }
 
+.actor-list {
+  width: 20em;
+  margin: 0 auto; }
+
 .actor {
   width: 20em;
   margin: 0 auto; }
   .actor .actor__name {
-    margin: .8em; }
+    margin-bottom: 0;
+    margin-left: 1em; }
   .actor .actor__init {
     margin-bottom: 0; }
   .actor .actor__handler {

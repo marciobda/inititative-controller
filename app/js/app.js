@@ -5,10 +5,10 @@ app.controller('InitiativeCtrl',function($scope){
 
     // Initial base group
     $scope.actors = [
-        { type : 'player',  name : 'Name', initValue : 10 },
-        { type : 'player',  name : 'Name', initValue : 10 },
-        { type : 'player',  name : 'Name', initValue : 10 },
-        { type : 'monster', name : 'Monster',  initValue : 10 }
+        { type : 'player',  name : '', initValue : 10 },
+        { type : 'player',  name : '', initValue : 10 },
+        { type : 'player',  name : '', initValue : 10 },
+        { type : 'monster', name : '',  initValue : 10 }
     ];
 
     $scope.reorder = function (initial, target) {
@@ -46,8 +46,8 @@ app.controller('InitiativeCtrl',function($scope){
             var longpress = true;
 
             element.on('input', function(e){
-                scope.name = this.querySelector('.actor__name').textContent;
-                scope.initValue = this.querySelector('.actor__name').value;
+                scope.name = this.querySelector('.actor__name').value;
+                scope.initValue = this.querySelector('.actor__init').value;
                 scope.$apply();
             });
 
@@ -57,24 +57,12 @@ app.controller('InitiativeCtrl',function($scope){
 
             element.on('mouseup',function(e){
                 element[0].draggable = false;
-                console.log(e);
                 e.target.focus();
 
             });
 
-            // element.on('touchstart',function(e){
-            //
-            //     $timeout(function(e){
-            //         if(longpress) {
-            //             element[0].draggable = true;
-            //         }
-            //     },100);
-            //
-            // });
-
             element.on('touchend',function(e){
                 longpress = false;
-                console.log(e);
                 e.target.focus();
                 element[0].draggable = false;
             });
@@ -98,4 +86,18 @@ app.controller('InitiativeCtrl',function($scope){
             });
         }
     }
+})
+
+.directive('ngPlaceholder', function($document) {
+  return {
+    restrict: 'A',
+    scope: {
+      placeholder: '=ngPlaceholder'
+    },
+    link: function(scope, elem, attr) {
+      scope.$watch('placeholder',function() {
+        elem[0].placeholder = scope.placeholder;
+      });
+    }
+  }
 });
