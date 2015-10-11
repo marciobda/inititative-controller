@@ -29306,7 +29306,7 @@ app.controller('InitiativeCtrl',function($scope){
 
 })
 
-.directive('actor',function(){
+.directive('actor',function($timeout){
     return {
         templateUrl: 'partials/actor.html',
         scope: {
@@ -29318,11 +29318,40 @@ app.controller('InitiativeCtrl',function($scope){
         link: function(scope,element,attr) {
 
             var handlers = document.querySelectorAll('.actor__handler');
+            var longpress = true;
 
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').textContent;
                 scope.initValue = this.querySelector('.actor__name').value;
                 scope.$apply();
+            });
+
+            element.on('mousedown touchstart',function(e){
+                element[0].draggable = true;
+            });
+
+            element.on('mouseup',function(e){
+                element[0].draggable = false;
+                console.log(e);
+                e.target.focus();
+
+            });
+
+            // element.on('touchstart',function(e){
+            //
+            //     $timeout(function(e){
+            //         if(longpress) {
+            //             element[0].draggable = true;
+            //         }
+            //     },100);
+            //
+            // });
+
+            element.on('touchend',function(e){
+                longpress = false;
+                console.log(e);
+                e.target.focus();
+                element[0].draggable = false;
             });
 
             element.on('dragstart', function(e){
