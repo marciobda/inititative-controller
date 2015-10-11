@@ -41,17 +41,12 @@ app.controller('InitiativeCtrl',function($scope){
             droppedEvent: '&dropped'
         },
         link: function(scope,element,attr) {
+
+            var handlers = document.querySelectorAll('.actor__handler');
+
             element.on('input', function(e){
-                scope.name = element[0]
-                    .children[0]
-                    .children[0]
-                    .children[0]
-                    .textContent;
-                scope.initValue = element[0]
-                    .children[0]
-                    .children[0]
-                    .children[0]
-                    .value;
+                scope.name = this.querySelector('.actor__name').textContent;
+                scope.initValue = this.querySelector('.actor__name').value;
                 scope.$apply();
             });
 
@@ -69,7 +64,7 @@ app.controller('InitiativeCtrl',function($scope){
                 scope.target = angular.element(this).scope().$index;
 
                 scope.droppedEvent( { initial : scope.initial, target: scope.target });
-                
+
                 angular.element(element[0].parentNode).removeClass('dragging');
             });
         }

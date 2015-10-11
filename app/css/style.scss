@@ -9,11 +9,17 @@ html {
     margin: 0 auto;
 
     .actor__name {
-        margin-top: .8em;
+        margin: .8em;
     }
 
     .actor__init {
         margin-bottom: 0;
+    }
+
+    .actor__handler {
+        width: 3em;
+        height: 3em;
+        background: rgba(0, 0, 0, .3);;
     }
 
 }

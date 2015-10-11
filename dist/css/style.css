@@ -5430,9 +5430,13 @@ html {
   width: 20em;
   margin: 0 auto; }
   .actor .actor__name {
-    margin-top: .8em; }
+    margin: .8em; }
   .actor .actor__init {
     margin-bottom: 0; }
+  .actor .actor__handler {
+    width: 3em;
+    height: 3em;
+    background: rgba(0, 0, 0, 0.3); }
 
 .actor-menu {
   margin: 0 auto; }
