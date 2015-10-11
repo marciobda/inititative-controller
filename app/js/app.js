@@ -1,5 +1,4 @@
 "use strict";
-var iosDragDropShim = { enableEnterLeave: true };
 var app = angular.module('Initiative',[]);
 
 app.controller('InitiativeCtrl',function($scope){
@@ -38,7 +37,8 @@ app.controller('InitiativeCtrl',function($scope){
         scope: {
             type: '=type',
             name: '=name',
-            initValue: '=ngModel'
+            initValue: '=ngModel',
+            droppedEvent: '&dropped'
         },
         link: function(scope,element,attr) {
             element.on('input', function(e){
@@ -56,53 +56,22 @@ app.controller('InitiativeCtrl',function($scope){
             });
 
             element.on('dragstart', function(e){
-
                 e.dataTransfer.setData('Text', attr.index);
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.dropEffect = 'move';
-
                 angular.element(element[0].parentNode).addClass('dragging');
-
-                //e.stopPropagation();
             });
 
             element.on('dragover',function(e){
-                element.addClass("actor--dragging");
-                e.stopPropagation();
                 e.preventDefault();
             });
 
-            element.on('dragleave',function(e){
-                element.removeClass("actor--dragging");
-            });
-
             element.on('drop',function(e){
-                element.removeClass("actor--dragging");
-            });
-
-        }
-    }
-})
-
-.directive('listOrder',function(){
-    return {
-        scope: {
-            droppedEvent: '&dropped'
-        },
-        link: function(scope, element, attr) {
-
-            element.on('dragend',function(e){
-                element.removeClass("dragging");
-            });
-
-
-            element.on('drop', function(e){
                 scope.initial = e.dataTransfer.getData('Text');
-                scope.target = e.target.attributes.getNamedItem('data-index').value;
+                scope.target = angular.element(this).scope().$index;
 
                 scope.droppedEvent( { initial : scope.initial, target: scope.target });
+                
+                angular.element(element[0].parentNode).removeClass('dragging');
             });
-
         }
     }
 });
