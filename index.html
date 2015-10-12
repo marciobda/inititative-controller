@@ -23,7 +23,7 @@
 
     <div class="grid-block vertical small-12 medium-8 large-6 actor-list">
 
-        <actor type="actor.type" name="actor.name" initValue="actor.initValue" data-ng-repeat="actor in actors track by $index" data-index="{{ $index }}" dropped="reorder(initial,target)" init="calcInitiative()"></actor>
+        <actor type="actor.type" name="actor.name" initValue="actor.initValue" data-ng-repeat="actor in actors track by $index" data-index="{{ $index }}" dropped="reorder(initial,target)" init="calcInitiative()" delete="remove(index)"></actor>
 
 
     </div>

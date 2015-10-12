@@ -5432,9 +5432,13 @@ html {
 .actor-list {
   overflow-y: visible;
   overflow: visible;
-  padding: 0 3em;
+  padding: 0 2em 0 3em;
   max-width: 56.25rem;
   margin: 0 auto; }
+
+.card.actor {
+  position: relative;
+  overflow: visible; }
 
 .actor__name[type="text"],
 .actor__name[type="text"]:focus,
@@ -5465,6 +5469,13 @@ html {
   @media only screen and (min-width: 40em) {
     .actor__init[type="number"] {
       padding-left: .9em; } }
+
+.actor__del {
+  color: #FFF;
+  top: 1.5rem;
+  right: 1.5rem; }
+  .actor__del:hover {
+    color: rgba(255, 255, 255, 0.5); }
 
 .actor-menu {
   margin: 0 auto;
