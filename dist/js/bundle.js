@@ -29302,8 +29302,22 @@ app.controller('InitiativeCtrl',function($scope){
         } else if(type === 'monster') {
             $scope.actors.push({ type : 'monster',  name : '', initValue : 10  });
         }
-        console.log($scope.actors);
     };
+
+    $scope.calcInitiative = function() {
+
+        var initCompare = function (a, b) {
+            if (a.initValue > b.initValue) {
+                return -1;
+            }
+            if (a.initValue < b.initValue) {
+                return 1;
+            }
+            return 0;
+        }
+        $scope.actors.sort(initCompare);
+        $scope.$apply();
+    }
 
 })
 
@@ -29314,13 +29328,21 @@ app.controller('InitiativeCtrl',function($scope){
             type: '=type',
             name: '=name',
             initValue: '=ngModel',
-            droppedEvent: '&dropped'
+            droppedEvent: '&dropped',
+            newInitNumber: '&init'
         },
         link: function(scope,element,attr) {
+
+            var initInput = angular.element(element.find('input')[0]);
+
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').value;
                 scope.initValue = this.querySelector('.actor__init').value;
                 scope.$apply();
+            });
+
+            initInput.bind('blur', function(e){
+                scope.newInitNumber();
             });
 
             element.on('mousedown',function(e){
