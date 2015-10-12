@@ -44,6 +44,11 @@ app.controller('InitiativeCtrl',function($scope){
         $scope.$apply();
     }
 
+    $scope.remove = function(index) {
+        $scope.actors.splice(index,1);
+        $scope.$apply();
+    }
+
 })
 
 .directive('actor',function($timeout){
@@ -54,11 +59,16 @@ app.controller('InitiativeCtrl',function($scope){
             name: '=name',
             initValue: '=ngModel',
             droppedEvent: '&dropped',
+            deleteEvent: '&delete',
             newInitNumber: '&init'
         },
         link: function(scope,element,attr) {
 
             var initInput = angular.element(element.find('input')[0]);
+
+            element.on('click', function (e){
+
+            });
 
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').value;
@@ -72,6 +82,9 @@ app.controller('InitiativeCtrl',function($scope){
 
             element.on('mousedown',function(e){
                 element[0].draggable = true;
+                if(e.target.nodeName === 'A') {
+                    scope.deleteEvent({ index : attr.index});
+                }
             });
 
             element.on('mouseup',function(e){
@@ -81,6 +94,9 @@ app.controller('InitiativeCtrl',function($scope){
 
             element.on('touchstart',function(e){
                 element[0].draggable = true;
+                if(e.target.nodeName === 'A') {
+                    scope.deleteEvent({ index : attr.index});
+                }
             });
 
             element.on('touchend',function(e){
