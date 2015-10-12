@@ -2,23 +2,20 @@ describe('InitiativeCtrl', function() {
 
     beforeEach(module('Initiative'));
 
-    var $controller;
+    var $controller,
+        $scope;
 
     beforeEach(inject(function( _$rootScope_, _$controller_) {
+
         $rootScope = _$rootScope_;
         $controller = _$controller_;
+
+        $scope = $rootScope.$new();
+        $controller('InitiativeCtrl',{$scope: $scope});
 
    }));
 
    describe('$scope.actors', function() {
-
-        var $scope,
-            controller;
-
-        beforeEach(function() {
-          $scope = {};
-          $controller('InitiativeCtrl',{$scope: $scope});
-        });
 
         it("should generate 4 actors", function() {
             expect($scope.actors.length).toBe(4);
@@ -28,14 +25,6 @@ describe('InitiativeCtrl', function() {
 
 
     describe('$scope.reorder', function() {
-
-        var $scope,
-            controller;
-
-        beforeEach(function() {
-          $scope = $rootScope.$new();
-          $controller('InitiativeCtrl',{$scope: $scope});
-        });
 
         it("should reorder the array, moving the last actor to the second position", function() {
 
@@ -54,14 +43,6 @@ describe('InitiativeCtrl', function() {
     });
 
     describe('$scope.addActor', function() {
-
-        var $scope,
-            controller;
-
-        beforeEach(function() {
-          $scope = $rootScope.$new();
-          $controller('InitiativeCtrl',{$scope: $scope});
-        });
 
         it("should add a new actor based on the role", inject(function() {
 
@@ -85,14 +66,6 @@ describe('InitiativeCtrl', function() {
 
 
     describe('$scope.calcInitiative', function() {
-
-        var $scope,
-            controller;
-
-        beforeEach(function() {
-          $scope = $rootScope.$new();
-          $controller('InitiativeCtrl',{$scope: $scope});
-        });
 
         it("should order the initiatives", inject(function() {
 
@@ -121,7 +94,22 @@ describe('InitiativeCtrl', function() {
 
     });
 
-    //TODO: Test Actor removed
-    //TODO: Test drag and drop event ???
+    describe('$scope.remove', function() {
+
+        it("should order the initiatives", inject(function() {
+
+            $scope.remove(2);
+
+            expect($scope.actors)
+            .toEqual([
+                { type : 'player',  name : '', initValue : 10 },
+                { type : 'player',  name : '', initValue : 10 },
+                { type : 'monster', name : '',  initValue : 10 }
+            ]);
+        }));
+
+    });
+
+    //TODO: E2E testing
     //
 });
