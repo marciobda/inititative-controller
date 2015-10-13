@@ -65,10 +65,7 @@ app.controller('InitiativeCtrl',function($scope){
         link: function(scope,element,attr) {
 
             var initInput = angular.element(element.find('input')[0]);
-
-            element.on('click', function (e){
-
-            });
+            var longpress;
 
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').value;
@@ -80,28 +77,33 @@ app.controller('InitiativeCtrl',function($scope){
                 scope.newInitNumber();
             });
 
-            element.on('mousedown',function(e){
+            element.on('mousedown touchstart',function(e){
+                e.preventDefault();
+
+                longpress = true;
                 element[0].draggable = true;
+
+                $timeout(function(){
+                    if(longpress) {
+                        element[0].draggable = false;
+                        e.target.focus();
+                    }
+                }, 300);
+
                 if(e.target.nodeName === 'A') {
                     scope.deleteEvent({ index : attr.index});
                 }
             });
 
-            element.on('mouseup',function(e){
-                element[0].draggable = false;
-                e.target.focus();
-            });
-
-            element.on('touchstart',function(e){
-                element[0].draggable = true;
-                if(e.target.nodeName === 'A') {
-                    scope.deleteEvent({ index : attr.index});
+            element.on('mouseup touchend',function(e){
+                if (!longpress) {
+                    e.target.blur();
                 }
+                longpress = false;
             });
 
-            element.on('touchend',function(e){
-                e.target.focus();
-                element[0].draggable = false;
+            element.on('mousemove touchmove',function(e){
+                longpress = false;
             });
 
             element.on('dragstart', function(e){
