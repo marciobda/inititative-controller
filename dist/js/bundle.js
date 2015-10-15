@@ -29353,7 +29353,7 @@ app.controller('InitiativeCtrl',function($scope){
             });
 
             element.on('mousedown touchstart',function(e){
-                e.preventDefault();
+                element[0].contentEditable = false;
 
                 longpress = true;
                 element[0].draggable = true;
@@ -29361,7 +29361,10 @@ app.controller('InitiativeCtrl',function($scope){
                 $timeout(function(){
                     if(longpress) {
                         element[0].draggable = false;
+                        element[0].contentEditable = true;
                         e.target.focus();
+                    } else {
+                        e.target.blur();
                     }
                 }, 300);
 
