@@ -29341,6 +29341,8 @@ app.controller('InitiativeCtrl',function($scope){
 
             var initInput = angular.element(element.find('input')[0]);
             var longpress;
+            var initCalulated = false;
+            var editing;
 
             element.on('input', function(e){
                 scope.name = this.querySelector('.actor__name').value;
@@ -29349,39 +29351,48 @@ app.controller('InitiativeCtrl',function($scope){
             });
 
             initInput.bind('blur', function(e){
+                e.preventDefault();
                 scope.newInitNumber();
             });
+            
 
-            element.on('mousedown touchstart',function(e){
-                element[0].contentEditable = false;
-
+            element.on('mousedown touchstart',function(e){                
+                
                 longpress = true;
-                element[0].draggable = true;
-
-                $timeout(function(){
-                    if(longpress) {
-                        element[0].draggable = false;
-                        element[0].contentEditable = true;
-                        e.target.focus();
-                    } else {
-                        e.target.blur();
-                    }
-                }, 300);
-
-                if(e.target.nodeName === 'A') {
+                editing = true;
+                
+                if(e.type === 'touchstart') {
+                    e.preventDefault();
+                    element[0].draggable = true;
+                } else if(e.target.nodeName === 'A') {
                     scope.deleteEvent({ index : attr.index});
                 }
+                
+                $timeout(function(){
+                    if(longpress) {
+                        element[0].draggable = true;
+                        element[0].contentEditable = false;
+                        e.target.blur();
+                        editing = false;
+                    }
+                }, 300);
+          
             });
 
             element.on('mouseup touchend',function(e){
-                if (!longpress) {
-                    e.target.blur();
+                
+                if(longpress) {
+                    longpress = false;
+                    element[0].draggable = false;
                 }
-                longpress = false;
+                
+                if(e.type === 'touchend' && editing === true) {
+                    e.target.focus();
+                }
+                
             });
 
             element.on('mousemove touchmove',function(e){
-                longpress = false;
             });
 
             element.on('dragstart', function(e){
