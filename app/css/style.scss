@@ -26,6 +26,7 @@ html {
     padding: 0 5em;
     margin: 0 auto;
     max-width: 56.25rem;
+}
 
 .card.actor {
     position: relative;
@@ -86,4 +87,13 @@ html {
         font-weight: bold;
         border-radius: 4px;
     }
+}
+
+.dragging actor {
+  z-index: 2;
+}
+
+.dragging .card {
+  transform: /* rotate(5deg) */ translateY(-5px);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,.4);
 }
