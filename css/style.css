@@ -5432,9 +5432,9 @@ html {
 .actor-list {
   overflow-y: visible;
   overflow: visible;
-  padding: 0 2em 0 3em;
-  max-width: 56.25rem;
-  margin: 0 auto; }
+  padding: 0 5em;
+  margin: 0 auto;
+  max-width: 56.25rem; }
 
 .card.actor {
   position: relative;
@@ -5484,3 +5484,10 @@ html {
     color: #fff;
     font-weight: bold;
     border-radius: 4px; }
+
+.dragging actor {
+  z-index: 2; }
+
+.dragging .card {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4); }
