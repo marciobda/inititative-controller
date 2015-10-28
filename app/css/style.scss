@@ -10,6 +10,7 @@
 // $gray-dark: darken($gray, 8);
 // $gray-light: lighten($gray, 8);
 
+
 @import '../../bower_components/foundation-apps/scss/foundation.scss';
 
 html {
@@ -18,14 +19,29 @@ html {
 
 .title {
     padding: 1em 2em;
+
+    @include breakpoint(960px) {
+      float: left;
+      width: 40%;
+     }
+
 }
 
 .actor-list {
+      @include breakpoint(960px) {
+        width: 50%;
+        float: left;
+        margin-top: 1em;
+      }
+
     overflow-y: visible;
     overflow: visible;
     padding: 0 5em;
     margin: 0 auto;
     max-width: 56.25rem;
+    -webkit-column-count: 2;
+      -moz-column-count: 2;
+        column-count: 2;
 }
 
 .card.actor {
@@ -87,6 +103,11 @@ html {
         font-weight: bold;
         border-radius: 4px;
     }
+}
+
+.dragging {
+  transition: 200ms ease-out;
+  transform: rotate(1deg);
 }
 
 .dragging actor {

@@ -76,8 +76,13 @@ app.controller('InitiativeCtrl',function($scope){
                 scope.$apply();
             });
 
+            element.on('keydown', function(e){
+              if (e.which == 9) {
+                 e.preventDefault();
+              }
+            });
+
             initInput.bind('blur', function(e){
-                e.preventDefault();
                 scope.newInitNumber();
             });
 
@@ -86,11 +91,14 @@ app.controller('InitiativeCtrl',function($scope){
 
                 longpress = true;
                 editing = true;
+                var position = e.y;
 
                 if(e.type === 'touchstart') {
                     e.preventDefault();
                     element[0].draggable = true;
-                } else if(e.target.nodeName === 'A') {
+                }
+
+                if(e.target.nodeName === 'A') {
                     scope.deleteEvent({ index : attr.index});
                 }
 
@@ -107,7 +115,6 @@ app.controller('InitiativeCtrl',function($scope){
             });
 
             element.on('mouseup touchend',function(e){
-
                 if(longpress) {
                     longpress = false;
                     element[0].draggable = false;
@@ -116,7 +123,11 @@ app.controller('InitiativeCtrl',function($scope){
                 if(e.type === 'touchend' && editing === true) {
                     e.target.focus();
                 }
+                angular.element(element[0]).removeClass('dragging');
+            });
 
+            element.on('mousemove',function(e){
+                longpress = false;
             });
 
             element.on('drag',function(e){

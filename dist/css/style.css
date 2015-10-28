@@ -5428,13 +5428,25 @@ html {
 
 .title {
   padding: 1em 2em; }
+  @media only screen and (min-width: 60em) {
+    .title {
+      float: left;
+      width: 40%; } }
 
 .actor-list {
   overflow-y: visible;
   overflow: visible;
   padding: 0 5em;
   margin: 0 auto;
-  max-width: 56.25rem; }
+  max-width: 56.25rem;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2; }
+  @media only screen and (min-width: 60em) {
+    .actor-list {
+      width: 50%;
+      float: left;
+      margin-top: 1em; } }
 
 .card.actor {
   position: relative;
@@ -5484,6 +5496,10 @@ html {
     color: #fff;
     font-weight: bold;
     border-radius: 4px; }
+
+.dragging {
+  transition: 200ms ease-out;
+  transform: rotate(1deg); }
 
 .dragging actor {
   z-index: 2; }

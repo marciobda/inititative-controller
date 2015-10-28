@@ -21,11 +21,12 @@
         <h1>Initiative Controller</h1>
         <h3>A static page app to manage Tabletop RPG Initiatives</h3>
         <p>by <a href="http://www.marciobda.com.br">marciobda</a></p>
+        <ul class="menu-bar condense actor-menu text-center">
+            <li><a class="button" data-ng-click="addActor('player')" href="#">New player</a></li>
+            <li><a class="alert button" data-ng-click="addActor('monster')" href="#">New monster</a></li>
+        </ul>
     </header>
-    <ul class="menu-bar condense actor-menu text-center">
-        <li><a class="button" data-ng-click="addActor('player')" href="#">New player</a></li>
-        <li><a class="alert button" data-ng-click="addActor('monster')" href="#">New monster</a></li>
-    </ul>
+
 
     <div class="grid-block vertical small-12 medium-8 large-6 actor-list">
 
