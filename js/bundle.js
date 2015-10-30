@@ -29276,9 +29276,14 @@ $provide.value("$locale", {
 "use strict";
 var app = angular.module('Initiative',[]);
 
+/**
+ * Initiative Controller
+ *
+ * Manage the initiative list operations
+ */
 app.controller('InitiativeCtrl',function($scope){
 
-    // Initial base group
+    // Base list
     $scope.actors = [
         { type : 'player',  name : '', initValue : 10 },
         { type : 'player',  name : '', initValue : 10 },
@@ -29286,14 +29291,12 @@ app.controller('InitiativeCtrl',function($scope){
         { type : 'monster', name : '',  initValue : 10 }
     ];
 
+    // Replace the order of two list items
     $scope.reorder = function (initial, target) {
-
         var temp = $scope.actors[target];
         $scope.actors[target] = $scope.actors[initial];
         $scope.actors[initial] = temp;
-
         $scope.$apply();
-
     };
 
     $scope.addActor = function(type) {
@@ -29305,7 +29308,6 @@ app.controller('InitiativeCtrl',function($scope){
     };
 
     $scope.calcInitiative = function() {
-
         var initCompare = function (a, b) {
             if (a.initValue > b.initValue) {
                 return -1;
