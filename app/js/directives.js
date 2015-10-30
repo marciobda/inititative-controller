@@ -1,3 +1,8 @@
+/**
+ * Player and Monster cards behaviour
+ *
+ * TODO: Refactor to multiple Directives
+ */
 app.directive('actor',function($timeout){
     return {
         templateUrl: 'js/views/actor.html',
@@ -32,7 +37,6 @@ app.directive('actor',function($timeout){
             initInput.bind('blur', function(e){
                 scope.newInitNumber();
             });
-
 
             element.on('mousedown touchstart',function(e){
 
@@ -79,7 +83,6 @@ app.directive('actor',function($timeout){
 
             element.on('drag',function(e){
                 var difference = e.y - startYposition + 40;
-                //element[0].style.transform = 'translateY(' + difference + 'px)';
             });
 
             element.on('dragstart', function(e){
@@ -111,6 +114,9 @@ app.directive('actor',function($timeout){
     }
 })
 
+/**
+ * Directive to make Input Placeholder dynamic
+ */
 .directive('ngPlaceholder', function($document) {
   return {
     restrict: 'A',
