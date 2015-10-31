@@ -20,7 +20,8 @@
   "dependencies": {
     "angular": "~1.4.7",
     "foundation-apps": "~1.1.0",
-    "drag-drop-webkit-mobile": "~1.1.1"
+    "drag-drop-webkit-mobile": "~1.1.1",
+    "github-fork-ribbon-css": "~0.1.1"
   },
   "resolutions": {
     "angular": "~1.4.7"
