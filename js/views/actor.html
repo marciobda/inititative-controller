@@ -1,7 +1,7 @@
-<div class="card actor" ng-class="{player:'primary', monster:'alert'}[type]">
+<div class="card actor" ng-class="{player:'primary', monster:'alert'}[actorType]">
     <div class="card-section clearfix">
-        <input class="actor__init float-left" ng-model="$parent.actor.initValue" type="number" min="0" step="1" max="35">
-        <input class="actor__name float-left" ng-model="$parent.actor.name" type="text" ng-placeholder="{player:'Char name...', monster:'Monster type...'}[type]">
+        <input class="actor__init float-left" type="number"  pattern="[0-9]*" inputmode="numeric" min="0" step="1" max="35" ng-model="$parent.actor.initValue" >
+        <input class="actor__name float-left" type="text" ng-model="$parent.actor.name" ng-placeholder="{player:'Char name...', monster:'Monster type...'}[actorType]">
         <a class="close-button actor__del">×</a>
     </div>
 </div>
