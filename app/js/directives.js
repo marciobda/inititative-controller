@@ -7,73 +7,71 @@ app.directive('actor',function($timeout){
     return {
         templateUrl: 'js/views/actor.html',
         scope: {
-            type: '=type',
-            name: '=name',
-            initValue: '=ngModel',
-            droppedEvent: '&dropped',
-            deleteEvent: '&delete',
+            actorType: '=type',
+            dropActor: '&dropped',
+            deleteActor: '&deleted',
             newInitNumber: '&init'
         },
         link: function(scope,element,attr) {
 
-            var initInput = angular.element(element.find('input')[0]);
             var longpress;
-            var initCalulated = false;
-            var editing;
-            var startYposition;
+            var editingValue;
 
-            element.on('input', function(e){
-                scope.name = this.querySelector('.actor__name').value;
-                scope.initValue = this.querySelector('.actor__init').value;
-                scope.$apply();
+            // Get the specific initiative input to bind blur event
+            // Should refactor this
+            var initInput = angular.element(element.find('input')[0]);
+            initInput.bind('blur', function(e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                scope.newInitNumber();
             });
 
             element.on('keydown', function(e){
-              if (e.which == 9) {
+              if (e.which == 9) { // TAB Value
                  e.preventDefault();
+                 scope.newInitNumber();
+                 e.target.blur();
               }
-            });
-
-            initInput.bind('blur', function(e){
-                scope.newInitNumber();
             });
 
             element.on('mousedown touchstart',function(e){
 
                 longpress = true;
-                editing = true;
-                var position = e.y;
 
                 if(e.type === 'touchstart') {
                     e.preventDefault();
-                    element[0].draggable = true;
+                    element[0].draggable = true; // only way to enable drag in touchscreens
+                    editingValue = true;
                 }
 
                 if(e.target.nodeName === 'A') {
-                    scope.deleteEvent({ index : attr.index});
+                    scope.deleteActor({ index : attr.index});
                 }
 
                 $timeout(function(){
                     if(longpress) {
                         element[0].draggable = true;
-                        angular.element(element[0]).addClass('dragging');
                         element[0].contentEditable = false;
+                        angular.element(element[0]).addClass('dragging');
+                        editingValue = false;
                         e.target.blur();
-                        editing = false;
                     }
-                }, 300);
+                }, 200);
 
             });
 
             element.on('mouseup touchend',function(e){
+
+                if( e.type === 'touchend' && editingValue === true) {
+                    e.target.focus();
+                }
+
                 if(longpress) {
                     longpress = false;
                     element[0].draggable = false;
+                    element[0].contentEditable = true;
                 }
 
-                if(e.type === 'touchend' && editing === true) {
-                    e.target.focus();
-                }
                 angular.element(element[0]).removeClass('dragging');
             });
 
@@ -81,32 +79,23 @@ app.directive('actor',function($timeout){
                 longpress = false;
             });
 
-            element.on('drag',function(e){
-                var difference = e.y - startYposition + 40;
-            });
-
             element.on('dragstart', function(e){
-                startYposition = e.y;
                 e.dataTransfer.setData('text/plain', attr.index);
             });
 
             element.on('dragover',function(e){
+                // prevent the auto adding in input field
                 e.preventDefault();
             });
 
-            element.on('dragend',function(e){
-                //element[0].style.transform = 'translateY(0px)';
-            });
-
             element.on('drop',function(e){
-                scope.initial = e.dataTransfer.getData('text/plain');
-                scope.target = angular.element(this).scope().$index;
+                var initialValue = e.dataTransfer.getData('text/plain');
+                var targetValue = angular.element(this).scope().$index;
+                var items = element[0].parentNode.children;
 
-                scope.droppedEvent( { initial : scope.initial, target: scope.target });
-                var items = element[0].parentNode.children,
-                    i = 0;
+                scope.dropActor( { initial : initialValue, target: targetValue });
 
-                for(i; i< items.length; i++) {
+                for( var i= 0; i< items.length; i++) {
                   angular.element(items[i]).removeClass('dragging');
                 }
             });

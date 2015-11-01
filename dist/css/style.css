@@ -5424,7 +5424,9 @@ blockquote p {
   float: none; }
 
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; }
 
 .title {
   padding: 1em 2em; }
