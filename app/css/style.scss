@@ -19,6 +19,15 @@ html {
    -webkit-touch-callout: none;
 }
 
+body {
+    color: #fff;
+    background: $dark-color;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #fff;
+}
+
 .title {
     padding: 1em 2em;
 
@@ -79,11 +88,22 @@ html {
         margin-top: -.7em;
         margin-left: -2.25em;
         font-size: 1.5rem;
+        border-color: $dark-color;
 
         @include breakpoint(medium) {
             padding-left: .9em;
          }
 
+    }
+
+    .primary .actor__init[type="number"] {
+        color: #fff;
+        background: adjust-color($primary-color, $lightness: -5%);
+    }
+
+    .alert .actor__init[type="number"] {
+        color: #fff;
+        background: adjust-color($alert-color, $lightness: -5%);
     }
 
     .actor__del {
@@ -100,6 +120,7 @@ html {
     margin: 0 auto;
     width: 20em;
     flex-wrap: wrap;
+    background: transparent;
 
     .button{
         color: #fff;
