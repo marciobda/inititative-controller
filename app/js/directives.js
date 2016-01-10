@@ -10,74 +10,67 @@ app.directive('actor',function($timeout){
             actorType: '=type',
             dropActor: '&dropped',
             deleteActor: '&deleted',
-            newInitNumber: '&init'
         },
         link: function(scope,element,attr) {
 
             var longpress;
             var editingValue;
+            var selectedCard = element[0];
 
-            // Get the specific initiative input to bind blur event
-            // Should refactor this
-            var initInput = angular.element(element.find('input')[0]);
-            initInput.bind('blur', function(e){
-                e.stopImmediatePropagation();
-                e.preventDefault();
-                scope.newInitNumber();
-            });
-
-            element.on('keydown', function(e){
-              if (e.which == 9) { // TAB Value
-                 e.preventDefault();
-                 scope.newInitNumber();
-                 e.target.blur();
-              }
-            });
-
-            element.on('mousedown touchstart',function(e){
-
-                longpress = true;
-
-                if(e.type === 'touchstart') {
-                    e.preventDefault();
-                    element[0].draggable = true; // only way to enable drag in touchscreens
-                    editingValue = true;
+            var dragHandler = function(){
+                if(longpress) {
+                    selectedCard.draggable = true;
+                    selectedCard.contentEditable = false;
+                    angular.element(selectedCard).addClass('dragging');
+                    editingValue = false;
                 }
+            }
 
+            element.on('mousedown',function(e){
+                longpress = true;
+                $timeout(dragHandler.bind(), 200);
+            });
+
+            element.on('mouseup',function(e){
+                if(longpress) {
+                    longpress = false;
+                    selectedCard.draggable = false;
+                    selectedCard.contentEditable = true;
+                }
+                angular.element(selectedCard).removeClass('dragging');
                 if(e.target.nodeName === 'A') {
                     scope.deleteActor({ index : attr.index});
                 }
-
-                $timeout(function(){
-                    if(longpress) {
-                        element[0].draggable = true;
-                        element[0].contentEditable = false;
-                        angular.element(element[0]).addClass('dragging');
-                        editingValue = false;
-                        e.target.blur();
-                    }
-                }, 200);
-
-            });
-
-            element.on('mouseup touchend',function(e){
-
-                if( e.type === 'touchend' && editingValue === true) {
-                    e.target.focus();
-                }
-
-                if(longpress) {
-                    longpress = false;
-                    element[0].draggable = false;
-                    element[0].contentEditable = true;
-                }
-
-                angular.element(element[0]).removeClass('dragging');
             });
 
             element.on('mousemove',function(e){
                 longpress = false;
             });
+
+            element.on('touchstart',function(e){
+                longpress = true;
+                e.preventDefault();
+                selectedCard.draggable = true;
+                editingValue = true;
+                $timeout(dragHandler.bind(), 200);
+            });
+
+            element.on('touchend',function(e){
+
+                if(editingValue === true) {
+                    e.target.focus();
+                }
+                if(longpress) {
+                    longpress = false;
+                    selectedCard.draggable = false;
+                    selectedCard.contentEditable = true;
+                }
+                angular.element(selectedCard).removeClass('dragging');
+                if(e.target.nodeName === 'A') {
+                    scope.deleteActor({ index : attr.index});
+                }
+            });
+
 
             element.on('dragstart', function(e){
                 e.dataTransfer.setData('text/plain', attr.index);
@@ -91,7 +84,7 @@ app.directive('actor',function($timeout){
             element.on('drop',function(e){
                 var initialValue = e.dataTransfer.getData('text/plain');
                 var targetValue = angular.element(this).scope().$index;
-                var items = element[0].parentNode.children;
+                var items = selectedCard.parentNode.children;
 
                 scope.dropActor( { initial : initialValue, target: targetValue });
 

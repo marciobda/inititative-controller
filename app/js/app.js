@@ -43,7 +43,7 @@ app.controller('InitiativeCtrl',function($scope){
             return 0;
         }
         $scope.actors.sort(initCompare);
-        $scope.$apply();
+        //$scope.$apply();
     }
 
     $scope.remove = function(index) {

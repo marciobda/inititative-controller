@@ -5493,7 +5493,8 @@ html {
 
 .actor-menu {
   margin: 0 auto;
-  width: 20em; }
+  width: 20em;
+  flex-wrap: wrap; }
   .actor-menu .button {
     color: #fff;
     font-weight: bold;

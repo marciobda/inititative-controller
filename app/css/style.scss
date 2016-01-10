@@ -99,6 +99,7 @@ html {
 .actor-menu {
     margin: 0 auto;
     width: 20em;
+    flex-wrap: wrap;
 
     .button{
         color: #fff;
