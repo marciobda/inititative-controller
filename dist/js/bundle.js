@@ -29330,12 +29330,10 @@ app.controller('InitiativeCtrl',function($scope){
 
 /**
  * Player and Monster cards behaviour
- *
- * TODO: Refactor to multiple Directives
  */
 app.directive('actor',function($timeout){
     return {
-        templateUrl: 'js/views/actor.html',
+        templateUrl: 'views/actor.html',
         scope: {
             actorType: '=type',
             dropActor: '&dropped',
@@ -29424,12 +29422,12 @@ app.directive('actor',function($timeout){
             });
         }
     }
-})
+});
 
 /**
  * Directive to make Input Placeholder dynamic
  */
-.directive('ngPlaceholder', function($document) {
+app.directive('ngPlaceholder', function($document) {
   return {
     restrict: 'A',
     scope: {
