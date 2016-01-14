@@ -21,8 +21,9 @@
 </head>
 <body data-ng-controller="InitiativeCtrl" >
     <header class="text-center title">
-        <h1>Initiative Controller</h1>
-        <h3>A static page app to manage Tabletop RPG Initiatives</h3>
+        <h1>RPG Initiative Controller</h1>
+        <p>A static page app to manage Tabletop RPG Initiatives</p>
+          <p><strong>Instruction:</strong> Type the character and enemies names, initiative number and calculate the round order. You could also drag and drop to reorder, include more enemies and allies in the combat or delete the existing ones.</p>
         <p>by <a href="http://www.marciobda.com.br">marciobda</a></p>
         <ul class="menu-bar condense actor-menu text-center">
             <li><a class="button" data-ng-click="addActor('player')" href="#">New player</a></li>
@@ -30,7 +31,6 @@
             <li><a class="warning button" data-ng-click="calcInitiative()" href="#">Calc initiative</a></li>
         </ul>
     </header>
-
 
     <div class="grid-block vertical small-12 medium-8 large-6 actor-list">
 
@@ -44,8 +44,6 @@
 
             dropped="reorder(initial,target)"
             deleted="remove(index)"></actor>
-
-
     </div>
 
 

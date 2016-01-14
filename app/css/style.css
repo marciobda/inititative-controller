@@ -5429,7 +5429,7 @@ html {
   -webkit-touch-callout: none; }
 
 body {
-  color: #fff;
+  color: #888;
   background: #212121; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -5459,7 +5459,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .card.actor {
   position: relative;
-  overflow: visible; }
+  overflow: visible;
+  cursor: pointer; }
 
 .actor__name[type="text"],
 .actor__name[type="text"]:focus,
@@ -5470,7 +5471,8 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   border: none;
   font-size: 1.5rem;
-  width: 90%; }
+  width: 90%;
+  cursor: pointer; }
 
 .actor__name[type="text"]::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.5); }
@@ -5509,7 +5511,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .actor-menu {
   margin: 0 auto;
-  width: 20em;
+  width: 28em;
   flex-wrap: wrap;
   background: transparent; }
   .actor-menu .button {
