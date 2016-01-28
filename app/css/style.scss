@@ -47,12 +47,16 @@ h1,h2,h3,h4,h5,h6 {
 
     overflow-y: visible;
     overflow: visible;
-    padding: 0 5em;
+    padding: 0 1em 0 3em;;
     margin: 0 auto;
     max-width: 56.25rem;
     -webkit-column-count: 2;
       -moz-column-count: 2;
         column-count: 2;
+
+    @include breakpoint(480px) {
+      padding: 0 5em;
+    }
 }
 
 .card.actor {
@@ -60,6 +64,16 @@ h1,h2,h3,h4,h5,h6 {
     overflow: visible;
     cursor: pointer;
 }
+
+actor {
+    transition: all 400ms ease-out;
+}
+
+.actor--placeholder {
+    padding-bottom: 6em;
+    background: #111;
+}
+
 
     .actor__name[type="text"],
     .actor__name[type="text"]:focus,
@@ -119,9 +133,13 @@ h1,h2,h3,h4,h5,h6 {
 
 .actor-menu {
     margin: 0 auto;
-    width: 28em;
+    width: 100%;
     flex-wrap: wrap;
     background: transparent;
+
+    @include breakpoint(960px) {
+      width: 28em;
+     }
 
     .button{
         color: #fff;
@@ -142,4 +160,8 @@ h1,h2,h3,h4,h5,h6 {
 .dragging .card {
   transform: /* rotate(5deg) */ translateY(-5px);
   box-shadow: 0 5px 5px 0 rgba(0,0,0,.4);
+}
+
+.actor--placeholder {
+    transition: 200ms ease-out;
 }

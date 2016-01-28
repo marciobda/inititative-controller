@@ -24,6 +24,13 @@ app.controller('InitiativeCtrl',function($scope){
         $scope.$apply();
     };
 
+    $scope.insert = function (initial, target) {
+        var temp = $scope.actors[initial];
+        $scope.actors.splice(initial,1);
+        $scope.actors.splice(target,0,temp);
+        $scope.$apply();
+    };
+
     $scope.addActor = function(type) {
         if(type === 'player') {
             $scope.actors.push({ type : 'player',  name : '', initValue : 10  });

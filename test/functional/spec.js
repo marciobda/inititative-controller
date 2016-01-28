@@ -13,13 +13,13 @@ describe('Protractor Demo App', function() {
 
     it('Should have 3 specific buttons', function () {
         var buttonList = element(by.css('.menu-bar')).all(by.css('li .button'));
-        expect(buttonList.getText()).toEqual([ 'New player', 'New monster', 'Calc initiative' ]);
+        expect(buttonList.getText()).toEqual([ 'new character', 'new monster', 'order by initiative' ]);
     });
 
     it('Should create a new player and a new monster', function () {
         var charList = element.all(by.repeater('actor in actors'));
-        element(by.linkText('New player')).click();
-        element(by.linkText('New monster')).click();
+        element(by.linkText('new character')).click();
+        element(by.linkText('new monster')).click();
         expect(charList.count()).toBe(6);
         charList.get(4).evaluate('actor.type').then(function(bidingValue){
             expect(bidingValue).toBe('player');
@@ -61,7 +61,7 @@ describe('Protractor Demo App', function() {
         expect(input3.getAttribute('value')).toBe('15');
         expect(input4.getAttribute('value')).toBe('14');
         expect(input5.getAttribute('value')).toBe('12');
-        element(by.linkText('Calc initiative')).click().then(function(){
+        element(by.linkText('order by initiative')).click().then(function(){
             var charList = element.all(by.repeater('actor in actors'));
             expect(charList.get(0).element(by.className('actor__init')).getAttribute('value')).toBe('22');
             expect(charList.get(1).element(by.className('actor__init')).getAttribute('value')).toBe('15');
@@ -88,5 +88,5 @@ describe('Protractor Demo App', function() {
         charList.get(1).element(by.className('actor__del')).click();
         expect(charList.get(1).element(by.className('actor__init')).getAttribute('value')).toBe('14');
     });
-    
+
 });

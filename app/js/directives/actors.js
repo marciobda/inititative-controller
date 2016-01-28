@@ -13,13 +13,15 @@ app.directive('actor',function($timeout){
 
             var longpress;
             var editingValue;
-            var selectedCard = element[0];
 
-            var dragHandler = function(){
+            var placeholder = true;
+            var draggedElement;
+
+            function dragHandler(){
                 if(longpress) {
-                    selectedCard.draggable = true;
-                    selectedCard.contentEditable = false;
-                    angular.element(selectedCard).addClass('dragging');
+                    element[0].draggable = true;
+                    element[0].contentEditable = false;
+                    angular.element(element[0]).addClass('dragging');
                     editingValue = false;
                 }
             }
@@ -32,10 +34,10 @@ app.directive('actor',function($timeout){
             element.on('mouseup',function(e){
                 if(longpress) {
                     longpress = false;
-                    selectedCard.draggable = false;
-                    selectedCard.contentEditable = true;
+                    element[0].draggable = false;
+                    element[0].contentEditable = true;
                 }
-                angular.element(selectedCard).removeClass('dragging');
+                angular.element(element[0]).removeClass('dragging');
                 if(e.target.nodeName === 'A') {
                     scope.deleteActor({ index : attr.index});
                 }
@@ -45,51 +47,80 @@ app.directive('actor',function($timeout){
                 longpress = false;
             });
 
-            element.on('touchstart',function(e){
-                longpress = true;
-                e.preventDefault();
-                selectedCard.draggable = true;
-                editingValue = true;
-                $timeout(dragHandler.bind(), 200);
-            });
-
-            element.on('touchend',function(e){
-
-                if(editingValue === true) {
-                    e.target.focus();
-                }
-                if(longpress) {
-                    longpress = false;
-                    selectedCard.draggable = false;
-                    selectedCard.contentEditable = true;
-                }
-                angular.element(selectedCard).removeClass('dragging');
-                if(e.target.nodeName === 'A') {
-                    scope.deleteActor({ index : attr.index});
-                }
-            });
 
 
+
+
+
+            // Fired in the dragged element
             element.on('dragstart', function(e){
                 e.dataTransfer.setData('text/plain', attr.index);
+                draggedElement = e.target;
             });
 
+            // Fired in the element underneath
             element.on('dragover',function(e){
-                // prevent the auto adding in input field
-                e.preventDefault();
-            });
-
-            element.on('drop',function(e){
-                var initialValue = e.dataTransfer.getData('text/plain');
-                var targetValue = angular.element(this).scope().$index;
-                var items = selectedCard.parentNode.children;
-
-                scope.dropActor( { initial : initialValue, target: targetValue });
-
-                for( var i= 0; i< items.length; i++) {
-                  angular.element(items[i]).removeClass('dragging');
+                e.preventDefault(); // prevent the auto adding in input field
+                if (placeholder &&
+                    element[0] !== draggedElement)
+                {
+                    angular.element(element[0]).addClass('actor--placeholder');
+                    placeholder = false;
                 }
             });
+
+            // Fired in the element underneath
+            element.on('dragleave', function(e){
+                angular.element(e.target).removeClass('actor--placeholder');
+                placeholder = true;
+
+            });
+
+            // Fired in the element underneath
+            element.on('drop',function(e){
+                placeholder = true;
+                var initialValue = e.dataTransfer.getData('text/plain');
+                var targetValue = angular.element(this).scope().$index;
+                scope.dropActor( { initial : initialValue, target: targetValue });
+
+                angular.element(document.querySelectorAll('actor')).removeClass('dragging actor--placeholder');
+                dragCounter = 0;
+            });
+
+            // Fired on the dragged element
+            element.on('dragend', function(e){
+                draggedElement = null;
+            });
+
+
+
+
+
+            // Touch Still need fixing
+
+            // element.on('touchstart',function(e){
+            //     longpress = true;
+            //     e.preventDefault();
+            //     element[0].draggable = true;
+            //     editingValue = true;
+            //     $timeout(dragHandler.bind(), 200);
+            // });
+            //
+            // element.on('touchend',function(e){
+            //
+            //     if(editingValue === true) {
+            //         e.target.focus();
+            //     }
+            //     if(longpress) {
+            //         longpress = false;
+            //         element[0].draggable = false;
+            //         element[0].contentEditable = true;
+            //     }
+            //     angular.element(element[0]).removeClass('dragging');
+            //     if(e.target.nodeName === 'A') {
+            //         scope.deleteActor({ index : attr.index});
+            //     }
+            // });
         }
     }
 });

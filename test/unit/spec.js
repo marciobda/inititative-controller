@@ -42,6 +42,24 @@ describe('InitiativeCtrl', function() {
 
     });
 
+    describe('$scope.insert', function() {
+
+        it("should reorder the array, moving the first actor to the last position", function() {
+
+          $scope.insert(0,3);
+
+          expect($scope.actors)
+            .toEqual([
+                { type : 'player',  name : '', initValue : 10 },
+                { type : 'player',  name : '', initValue : 10 },
+                { type : 'monster', name : '',  initValue : 10 },
+                { type : 'player',  name : '', initValue : 10 }
+            ]);
+
+        });
+
+    });
+
     describe('$scope.addActor', function() {
 
         it("should add a new actor based on the role", inject(function() {
