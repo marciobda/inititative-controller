@@ -12,6 +12,7 @@
 
 <!-- build:js -->
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/drag-drop-webkit-mobile/ios-drag-drop.js"></script>
     <script src="js/app.js"></script>
     <script src="js/directives/actors.js"></script>
     <script src="js/directives/ngPlaceholer.js"></script>
@@ -25,9 +26,9 @@
           <p><strong>Instruction:</strong> Type the character and enemies names, initiative number and calculate the round order. You could also drag and drop to reorder (on desktop), include more enemies and allies in the combat or delete the existing ones.</p>
         <p>by <a href="http://www.marciobda.com.br">marciobda</a></p>
         <ul class="menu-bar condense actor-menu text-center">
-            <li><a class="button" data-ng-click="addActor('player')" href="#">new character</a></li>
-            <li><a class="alert button" data-ng-click="addActor('monster')" href="#">new monster</a></li>
-            <li><a class="warning button" data-ng-click="calcInitiative()" href="#">order by initiative</a></li>
+            <li><a class="button" data-ng-click="addActor('player')">new character</a></li>
+            <li><a class="alert button" data-ng-click="addActor('monster')">new monster</a></li>
+            <li><a class="warning button" data-ng-click="calcInitiative()">order by initiative</a></li>
         </ul>
     </header>
 
