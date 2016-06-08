@@ -22,7 +22,7 @@ $alert-color: #FF5252 !default;
 // $info-color: #A0D3E8;
 // $success-color: #43AC6A;
 // $warning-color: #F08A24;
-$dark-color: #212121;
+$dark-color: #313131;
 // $gray: #dfdfdf;
 // $gray-dark: darken($gray, 8);
 // $gray-light: lighten($gray, 8);
@@ -66,24 +66,14 @@ h1,h2,h3,h4,h5,h6 {
  * NAVIGATION AND CONTROLLERS
  */
 .title {
-  padding: 1em 2em;
-
-  @include breakpoint(960px) {
-    float: left;
-    width: 40%;
-  }
-
 }
 
 .actor-menu {
-  margin: 0 auto;
+  margin: 0 2em;
   width: 100%;
   flex-wrap: wrap;
   background: transparent;
 
-  @include breakpoint(960px) {
-    width: 32em;
-  }
 
   .button{
     color: #fff;
@@ -100,26 +90,20 @@ h1,h2,h3,h4,h5,h6 {
  * INITIATIVE CARDS
  */
 .actor-list {
-  @include breakpoint(960px) {
-    width: 50%;
-    top: 1em;
-  }
 
   overflow-y: visible;
   overflow: visible;
   padding: 0 2em 0 4em;;
   margin: 0 auto;
-  max-width: 56.25rem;
+  max-width: 32rem;
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
 
-  @include breakpoint(480px) {
-    padding: 0 5em;
-  }
 }
 
 .card.actor {
+
   position: relative;
   overflow: visible;
   cursor: pointer;
@@ -194,11 +178,12 @@ actor {
  */
  .dragging {
    transition: 200ms ease-out;
-   //transform: rotate(1deg);
+   transform: rotate(0deg);
  }
 
  .dragging actor {
    z-index: 2;
+
  }
 
  .dragging .card {
@@ -208,6 +193,37 @@ actor {
 
  .actor--placeholder {
    transition: 200ms ease-out;
-   padding-bottom: 6em;
+   opacity: 0.25;
+   transform: scale3d(.98,.98,1);
    //background: #111;
  }
+
+
+
+
+
+
+ .github-ribbon {
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	transform: rotate(90deg) translateX(70.71068%) rotate(-90deg) rotate(-45deg) translateY(-100%);
+ 	transform-origin: 0 0;
+ 	padding: .4em 3em;
+ 	background: $alert-color;
+ 	text-decoration: none;
+ 	color: white;
+ 	box-shadow: 0 0.1em 0 0.1em rgba(0, 0, 0, 0.15);
+ 	font-weight: bold;
+
+  @include breakpoint(small) {
+    display: none;
+  }
+
+
+ }
+
+ 	.github-ribbon:hover {
+ 		opacity: .75;
+    color: #fff;
+ 	}

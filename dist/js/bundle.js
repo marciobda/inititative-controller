@@ -30118,7 +30118,7 @@ app.directive('actor',function($timeout){
 
 
 
-      
+
       /**
       *  Desktop Events
       */
@@ -30185,6 +30185,7 @@ app.directive('actor',function($timeout){
       element.on('dragstart', function(e){
         e.dataTransfer.setData('text/plain', attr.index);
         draggedElement = e.target;
+        return false
       });
 
       // Fired in the element underneath
